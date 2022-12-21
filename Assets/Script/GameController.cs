@@ -34,7 +34,9 @@ public class GameController : MonoBehaviour
             {
                 UpdateLine(tempFingerPos);
             }
-        }else{
+        }
+        else
+        {
             Moving();
             Remove();
         }
@@ -46,9 +48,11 @@ public class GameController : MonoBehaviour
             touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Began)
             {
-
-                CreateLine();
-
+                Vector2 tempFingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                if(Vector2.Distance(player.transform.position, tempFingerPos) < 1f)
+                {
+                    CreateLine();
+                }
             }
             else if (touch.phase == TouchPhase.Moved)
             {
